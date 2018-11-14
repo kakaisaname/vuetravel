@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Router from "vue-router";
-import Home from "./views/Home.vue";
+// import Home from "./views/Home.vue";
+import Index from "./views/Index.vue";
 
 Vue.use(Router);
 
@@ -10,8 +11,8 @@ export default new Router({
   routes: [
     {
       path: "/",
-      name: "home",
-      component: Home
+      name: "index",
+      component: Index //当用户访问根路径/时，展示index组件
     },
     {
       path: "/about",
