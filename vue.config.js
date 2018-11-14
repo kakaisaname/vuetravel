@@ -6,8 +6,8 @@ module.exports = {
     resolve: {
       alias: {
         style: "@/assets/style",
-        components: "@/components",
-        views: "@/views"
+        // components: "@/components",
+        // views: "@/views"
       }
     }
   }
