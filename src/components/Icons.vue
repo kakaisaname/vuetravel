@@ -81,39 +81,41 @@ export default {
         // overflow hidden  swiper-container 自带这个
         height  0           //按照宽度来的，写0就可以了
         padding-bottom 50%  //往下撑的高度为宽度的50%
-        .icon
-            position relative
-            overflow hidden //图片太大了
-            float left     //左浮动
-            width 25%      //宽度25%
-            height 0       //图片的高度高了
-            padding-bottom 25%  //高度25%
-            .icon-img
-                position absolute  //和上面的 position relative 对应
-                top 0
-                left 0
-                right 0
-                box-sizing border-box
-                padding .2rem
-                bottom .44rem //底部留点空间写文字
-                .img-icon-content
-                    display block  //包括下一行为了图片居中 
-                    height 100%    //图片居中
-                    width  100%    //图片居中
-            .icon-desc
-                 position absolute
-                 left 0
-                 right 0
-                 bottom 0
-                 height .44rem
-                 line-height .44rem
-                 text-align center
-                 color $darkTextColor   
-                 ellipsis()
-                 //下面处理文字描述太长处理
-                //  overflow hidden
-                //  white-space nowrap
-                //  text-overflow ellipsis  //ellipsis 代表省略号
+    .icons 
+            margin-top .1rem
+            .icon
+                position relative
+                overflow hidden //图片太大了
+                float left     //左浮动
+                width 25%      //宽度25%
+                height 0       //图片的高度高了
+                padding-bottom 25%  //高度25%
+                .icon-img
+                    position absolute  //和上面的 position relative 对应
+                    top 0
+                    left 0
+                    right 0
+                    box-sizing border-box
+                    padding .2rem
+                    bottom .44rem //底部留点空间写文字
+                    .img-icon-content
+                        display block  //包括下一行为了图片居中 
+                        height 100%    //图片居中
+                        width  100%    //图片居中
+                .icon-desc
+                    position absolute
+                    left 0
+                    right 0
+                    bottom 0
+                    height .44rem
+                    line-height .44rem
+                    text-align center
+                    color $darkTextColor   
+                    ellipsis()
+                    //下面处理文字描述太长处理
+                    //  overflow hidden
+                    //  white-space nowrap
+                    //  text-overflow ellipsis  //ellipsis 代表省略号    
                 
 </style>
 
