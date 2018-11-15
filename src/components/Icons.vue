@@ -1,6 +1,6 @@
 <template>
     <div class="icons">
-        <swiper> <!--图片轮播效果-->
+        <swiper :options="swiperOption"> <!--图片轮播效果-->
             <swiper-slide v-for="(page,index) of pages" :key="index">  <!--翻页轮播-->
                 <div class="icon" v-for="item of page" :key="item.id">
                     <div class="icon-img">
@@ -16,45 +16,14 @@
 <script>
 export default {
     name:'HomeIcons',
+    props:{
+        iconList:Array
+    },
     data () {
         return {
-            iconList:[{
-                id:'1',
-                imgUrl:'https://imgs.qunarzz.com/p/p97/1512/73/97da2a9e39df59f7.jpg_256x160_acb41adf.jpg',
-                desc:'景点门票钉钉撒多的撒大所多'
-            },{
-                id:'2',
-                imgUrl:'https://imgs.qunarzz.com/p/p48/201302/28/bc44faa497db0dcf93835fbb.jpg_256x160_0ba13461.jpg',
-                desc:'泰国'
-            },{
-                id:'3',
-                imgUrl:'https://imgs.qunarzz.com/p/p31/201308/23/6e7287aa8665d18793835fbb.jpg_256x160_3396ce22.jpg',
-                desc:'眉山'
-            },{
-                id:'4',
-                imgUrl:'https://imgs.qunarzz.com/sight/p0/1505/c7/c77ffdc12cfba81d.water.jpg_256x160_c4a898ec.jpg',
-                desc:'毕棚沟'
-            },{
-                id:'5',
-                imgUrl:'https://imgs.qunarzz.com/p/p97/1512/73/97da2a9e39df59f7.jpg_256x160_acb41adf.jpg',
-                desc:'景点门票'
-            },{
-                id:'6',
-                imgUrl:'https://imgs.qunarzz.com/p/p48/201302/28/bc44faa497db0dcf93835fbb.jpg_256x160_0ba13461.jpg',
-                desc:'泰国'
-            },{
-                id:'7',
-                imgUrl:'https://imgs.qunarzz.com/p/p31/201308/23/6e7287aa8665d18793835fbb.jpg_256x160_3396ce22.jpg',
-                desc:'眉山'
-            },{
-                id:'8',
-                imgUrl:'https://imgs.qunarzz.com/sight/p0/1505/c7/c77ffdc12cfba81d.water.jpg_256x160_c4a898ec.jpg',
-                desc:'毕棚沟'
-            },{
-                id:'9',
-                imgUrl:'https://imgs.qunarzz.com/sight/p0/201407/03/a584374ee80b738e2600d6bcaf1299e3.jpg_256x160_e2649452.jpg',
-                desc:'毕棚沟'
-            }]
+             swiperOption:{
+                 autoplay: false   //防止icons 自动滚动到第二页
+             }    
         }
     },
     computed: { //计算属性，计算图标页码 这里每页展示8个图片，多余的向后展示

@@ -1,10 +1,10 @@
 <template>
 <!--class="wraper" 解决窗口抖动问题-->
     <div class="wraper"> 
-        <swiper :options="swiperOption">
+        <swiper :options="swiperOption" v-if="showSwiper">
             <!-- slides -->
-            <swiper-slide v-for="item of swiperList" :key="item.id">
-                <img class="swiper-img" :src="item.imgurl" alt="item.name">
+            <swiper-slide v-for="item of list" :key="item.id">
+                <img class="swiper-img" :src="item.imgUrl">
             </swiper-slide>
             <!-- <swiper-slide>I'm Slide 3</swiper-slide>
             <swiper-slide>I'm Slide 4</swiper-slide>
@@ -25,29 +25,20 @@
 <script>
 export default {
    name:'IndexSwiper',
+   props:{
+       list:Array
+   },
    data () {
        return {
            swiperOption:{
                pagination:'.swiper-pagination',
                loop:true
-           },
-           swiperList:[
-               {
-                id:'1',
-                imgurl:'https://imgs.qunarzz.com/piao/fusion/1811/93/5fcdf1aeb85b4802.jpg_890x330_39f934c8.jpg',
-                name:'国色天香陆地乐园'
-              },
-             {
-                 id:'2',
-                 imgurl:'https://imgs.qunarzz.com/piao/fusion/1810/d1/7dd61ed311c7dd02.jpg_890x330_0262a5ca.jpg',
-                 name:'国色天香陆地乐园'
-             },
-             {
-                 id:'3',
-                 imgurl:'https://imgs.qunarzz.com/piao/fusion/1810/23/e24143794d9cbb02.jpg_890x330_9689bdd2.jpg',
-                 name:'国色天香陆地乐园'
-             }
-           ]
+           }
+       }
+   },
+   computed:{  //计算属性，如果没有这个的话，图片轮播默认为最后一个图，应该设置为第一个图
+       showSwiper () {
+           return this.list.length
        }
    }
 }

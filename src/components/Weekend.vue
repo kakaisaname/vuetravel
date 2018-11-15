@@ -1,13 +1,14 @@
 <template>
     <div>
-        <div class="recommend-title">热销推荐</div>
+        <div class="recommend-title">周末去哪 </div>
         <ul>
-            <li class="item border-bottom" v-for="item of recommendList" :key="item.id">  <!--border-bottom 1像素边框-->
-                <img class="item-img" :src="item.imgUrl" alt="">
+            <li class="item border-bottom" v-for="item of weekendList" :key="item.id">  <!--border-bottom 1像素边框-->
+                <div item-img-wrapper>
+                    <img class="item-img" :src="item.imgUrl" alt="">
+                </div>
                 <div class="item-info">
                     <p class="item-title">{{item.title}}</p>
                     <p class="item-desc">{{item.desc}}</p>
-                    <button class="item-button">查看详情</button>
                 </div>
             </li>
         </ul>      
@@ -16,9 +17,9 @@
 
 <script>
 export default {
-    name:'Recommend',
+    name:'Weekend',
     props:{
-        recommendList:Array
+        weekendList:Array
     }
 }
 </script>
@@ -26,18 +27,23 @@ export default {
 <style lang="stylus" scoped>
     @import '~style/mixins.styl';
     .recommend-title
-        margin-top .2rem   //和上面有点间距
+        // margin-top .2rem   //和上面有点间距
         line-height .8rem
         background #eee
         text-indent .2rem   //缩进
-    .item
+    // .item
+    //     overflow hidden
+    //     display flex    //自动撑满
+    //     height 1.9rem   //高除以50（font-size）
+    .item-img-wrapper   //图片
         overflow hidden
-        display flex    //自动撑满
-        height 1.9rem   //高除以50（font-size）
-        .item-img       //图片的宽和高
-            width 1.7rem
-            height 1.7rem
-            padding .1rem
+        // height 2.64rem
+        padding-bottom 37.09%  //.item-img中设置了height  可以不需要设置
+    .item-img       //图片的宽和高
+            // width 1.7rem
+            // height 2.64rem
+            // padding .1rem
+            width 100%   //图片填充
         .item-info    
             flex 1  //1自动撑开
             padding .1rem
@@ -49,14 +55,7 @@ export default {
             .item-desc
                 line-height .4rem
                 color #ccc
-                ellipsis()
-            .item-button
-                line-height .44rem
-                margin-top .16rem
-                background #ff9300
-                padding 0 .1rem      //上下0  左右.1rem
-                border-radius .06rem  //3像素  相当于0.06
-                color   #fff  
+                ellipsis()   
 </style>
 
 
