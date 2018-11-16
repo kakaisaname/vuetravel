@@ -31,8 +31,13 @@ export default {
     },
     data () {
         return {
-            touchStatus:false
+            touchStatus:false,
+            startY:0,
+            timer:null   //函数节流 handleTouchMove 防止滑动得太快
         }
+    },
+    updated () {
+      this.startY = this.$refs['A'][0].offsetTop  ////获取A元素距离顶部的高度
     },
     methods: {
         handleLetterClick (e) {
@@ -42,17 +47,22 @@ export default {
         handleTouchStart () {
             this.touchStatus = true   //当手指触摸时  上下拖动时
         },
-        handleTouchMove (e) {
+        handleTouchMove (e) {  //将 startY去掉，放在updated中，是为了不用每次都去计算
             if (this.touchStatus) {
-                const startY = this.$refs['A'][0].offsetTop  //获取A元素距离顶部的高度
-                // console.log(startY)
-                // const touchY = e.touches[0].clientY //距离顶部的高度
-                const touchY = e.touches[0].clientY - 79 //拖动的地方距离输入框下沿的高度
-                const index = Math.floor((touchY - startY) / 20)      //每个字母的高度为20像素 .4rem * 50 = 20
-                // console.log(index)
-                if (index >=0 && index < this.letters.length) {
-                    this.$emit('change',this.letters[index])
+                if (this.timer) {
+                    clearTimeout(this.timer)
                 }
+                this.timer = setTimeout(() => {
+                    // const startY = this.$refs['A'][0].offsetTop  //获取A元素距离顶部的高度
+                    // console.log(startY)
+                    // const touchY = e.touches[0].clientY //距离顶部的高度
+                    const touchY = e.touches[0].clientY - 79 //拖动的地方距离输入框下沿的高度
+                    const index = Math.floor((touchY - this.startY) / 20)      //每个字母的高度为20像素 .4rem * 50 = 20
+                    // console.log(index)
+                    if (index >=0 && index < this.letters.length) {
+                        this.$emit('change',this.letters[index])
+                    }
+                },16)   //延迟16ms的时间去执行这个方法
             }
         },
         handleTouchEnd () { 
