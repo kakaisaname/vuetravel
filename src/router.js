@@ -28,6 +28,12 @@ export default new Router({
       name: "City",
       component: () =>
         import(/* webpackChunkName: "about" */ "./components/City/City.vue")
+    },
+    {
+      path: "/detail/:id", //动态路由
+      name: "Detail",
+      component: () =>
+        import(/* webpackChunkName: "about" */ "./components/Detail/Detail.vue")
     }
   ]
 });
