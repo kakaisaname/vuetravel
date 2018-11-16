@@ -7,12 +7,15 @@
             <span class="iconfont">&#xe632;</span>
             输入城市/景点/游玩主题
         </div>
-        <div class="header-right">
-            <div class="header-right-city">
-                {{this.city}}
-                <span class="iconfont arrow-icon">&#xe64a;</span>
+        <router-link to="/city">
+            <div class="header-right">
+                <div class="header-right-city">
+                    {{this.city}}
+                    <span class="iconfont arrow-icon">&#xe64a;</span>
+                </div>
             </div>
-        </div>
+        </router-link>
+    
     </div>
 </template>
 <script>
@@ -54,6 +57,7 @@ vue中@符号代表src目录  css中引用@前加~  ~@-->
             color #ccc
             border-radius .1rem
         .header-right
+            color #fff //router-link会改变字体颜色 这里设置颜色
             width 2rem
             .header-right-city
                 float right 
