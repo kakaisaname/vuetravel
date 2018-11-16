@@ -1,7 +1,7 @@
 import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
-import store from "./store";
+import store from "./store"; //引入store.js
 import fastClick from "fastclick";
 import "style/reset.css"; //引入css基础文件
 import "style/border.css";

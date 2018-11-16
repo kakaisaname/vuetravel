@@ -9,20 +9,22 @@
         </div>
         <router-link to="/city">
             <div class="header-right">
-                <div class="header-right-city">
+                <!-- <div class="header-right-city"> -->
                     {{this.city}}
                     <span class="iconfont arrow-icon">&#xe64a;</span>
-                </div>
+                <!-- </div> -->
             </div>
         </router-link>
     
     </div>
 </template>
 <script>
+import { mapState,mapGetters } from 'vuex'
 export default {
     name:'HomeHeader',
-    props:{
-        city:String
+    computed: {
+        ...mapState(['city']),   //将city这个公用数据映射到city这个公用属性当中
+        // ...mapGetters(['doubleCity'])   
     }
 }
 </script>
@@ -57,11 +59,15 @@ vue中@符号代表src目录  css中引用@前加~  ~@-->
             color #ccc
             border-radius .1rem
         .header-right
-            color #fff //router-link会改变字体颜色 这里设置颜色
-            width 2rem
-            .header-right-city
-                float right 
-                padding-right .3rem
+            color #fff //router -link会改变字体颜色 这里设置颜色
+            // width 1.24rem
+            min-width 1.04         //解決城市名太长的问题
+            padding 0 .1rem
+            text-align center
+            float right
+            // .header-right-city
+            //     float right 
+            //     padding-right .3rem
             // ellipsis()
             .arrow-icon
                 margin-left -.04rem

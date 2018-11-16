@@ -5,15 +5,21 @@
             <div class="title border-topbottom">当前城市</div>
             <div class="button-list">
                 <div class="button-wrapper">
-                    <div class="button">北京</div>
+                    <div class="button">{{this.currentCity}}</div>
                 </div>
             </div>
         <!-- </dir> -->
         <!-- <dir class="area"> -->
             <div class="title border-topbottom">热门城市</div>
             <div class="button-list">
-                <div class="button-wrapper" v-for="item of hot" :key="item.id">
-                    <div class="button">{{item.name}}</div>
+                <div class="button-wrapper" 
+                    v-for="item of hot" 
+                    :key="item.id"
+                    @click="handleHotCityClick(item.name)"
+                    >
+                    <div class="button">
+                        {{item.name}}
+                    </div>
                 </div>
             </div>
             <div class="area" 
@@ -23,7 +29,13 @@
             >
                 <div class="title border-topbottom">{{key}}</div>
                 <div class="item-list">
-                    <div class="item border-bottom" v-for="innerItem of item" :key="innerItem.id">{{innerItem.name}}</div>
+                    <div class="item border-bottom" 
+                    v-for="innerItem of item" 
+                    :key="innerItem.id"
+                    @click="handleHotCityClick(innerItem.name)"
+                    >
+                    {{innerItem.name}}
+                    </div>
                 </div>
             </div>
         </div>
@@ -32,12 +44,25 @@
 
 <script>
 import  Bscroll from 'better-scroll' //滚动显示
+import { mapState,mapMutations } from 'vuex'
 export default {
     name: 'CityList',
     props: {
         cities:Object,
         hot:Array,
         letter:String
+    },
+    methods: {
+      handleHotCityClick (hotcityname) {
+        //   alert(hotcityname)
+        //vuex  数据共享 在store.js中写入这个方法
+        // this.$store.dispatch('changeCity',hotcityname) 有异步操作或大量数据用这个方法
+        // this.$store.commit('changeCity',hotcityname) //下面用了...mapMutations 可以更改为以下方式
+        this.changeCity(hotcityname) 
+        //页面间的跳转
+        this.$router.push('/')
+      },
+       ...mapMutations(['changeCity'])
     },
     mounted () {
         this.scroll = new Bscroll(this.$refs.wrapper) //Bscroll 方法里必须为一个dom元素
@@ -51,6 +76,11 @@ export default {
             }
             // console.log(this.letter)
         }
+    },
+    computed: {
+        ...mapState({
+            currentCity: 'city'
+        })   //将city这个公用数据映射到city这个公用属性当中
     }    
 }
 </script>
