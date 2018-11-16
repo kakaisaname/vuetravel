@@ -16,7 +16,11 @@
                     <div class="button">{{item.name}}</div>
                 </div>
             </div>
-            <div class="area" v-for="(item,key) of cities" :key="key">
+            <div class="area" 
+            v-for="(item,key) of cities" 
+            :key="key"
+            :ref="key"
+            >
                 <div class="title border-topbottom">{{key}}</div>
                 <div class="item-list">
                     <div class="item border-bottom" v-for="innerItem of item" :key="innerItem.id">{{innerItem.name}}</div>
@@ -32,10 +36,21 @@ export default {
     name: 'CityList',
     props: {
         cities:Object,
-        hot:Array
+        hot:Array,
+        letter:String
     },
     mounted () {
-        this.scroll = new Bscroll(this.$refs.wrapper)
+        this.scroll = new Bscroll(this.$refs.wrapper) //Bscroll 方法里必须为一个dom元素
+    },
+    watch: {    //侦听器，监听letter变化了
+        letter () {
+            if (this.letter) { //如果letter不为空
+                const element = this.$refs[this.letter][0]   //通过字母获取到 class=area对应字母下的区域
+                // console.log(element)
+                this.scroll.scrollToElement(element)  //element必须要为一个dom元素
+            }
+            // console.log(this.letter)
+        }
     }    
 }
 </script>

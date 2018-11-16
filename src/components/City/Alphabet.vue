@@ -1,6 +1,16 @@
 <template>
     <ul class="list">
-        <li class="item" v-for="(item,key) of cities" :key="key">{{key}}</li>
+        <li class="item" 
+        v-for="item of letters" 
+        :key="item"
+        :ref="item"
+        @click="handleLetterClick"
+        @touchstart="handleTouchStart"
+        @touchmove="handleTouchMove"
+        @touchend="handleTouchEnd"
+        >
+        {{item}}
+        </li>
     </ul>
 </template>
 
@@ -9,6 +19,45 @@ export default {
     name: 'CityAlphabet',
     props: {
         cities: Object   //城市
+    },
+    computed: {  //计算属性   letters 上面 v-for用到
+        letters () {
+            const letters = []    //获取含有字母的数组  ['A','B' ...]
+            for (let i in this.cities) {
+                letters.push(i)
+            }
+            return letters
+        }
+    },
+    data () {
+        return {
+            touchStatus:false
+        }
+    },
+    methods: {
+        handleLetterClick (e) {
+            // console.log(e.target.innerText)  //打印点击的字母
+            this.$emit('change',e.target.innerText)
+        },
+        handleTouchStart () {
+            this.touchStatus = true   //当手指触摸时  上下拖动时
+        },
+        handleTouchMove (e) {
+            if (this.touchStatus) {
+                const startY = this.$refs['A'][0].offsetTop  //获取A元素距离顶部的高度
+                // console.log(startY)
+                // const touchY = e.touches[0].clientY //距离顶部的高度
+                const touchY = e.touches[0].clientY - 79 //拖动的地方距离输入框下沿的高度
+                const index = Math.floor((touchY - startY) / 20)      //每个字母的高度为20像素 .4rem * 50 = 20
+                // console.log(index)
+                if (index >=0 && index < this.letters.length) {
+                    this.$emit('change',this.letters[index])
+                }
+            }
+        },
+        handleTouchEnd () { 
+            this.touchStatus = false   //当手指结束触摸时
+        }
     }    
 }
 </script>
