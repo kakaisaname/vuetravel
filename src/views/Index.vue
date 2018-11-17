@@ -53,7 +53,7 @@ export default {
         }
     },
     mounted () {
-        lastCity = this.city
+        this.lastCity = this.city
         this.getIndexInfo()
     },
     activated () {   //当使用了keep-alive 缓存路由后
