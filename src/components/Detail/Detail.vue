@@ -1,12 +1,16 @@
 <template>
-    <div>
-        detail
-    </div>
+   <detail-banner>
+       banner
+   </detail-banner>
 </template>
 
 <script>
+import DetailBanner from "./Banner"
 export default {
-    name:'Detail'
+    name:'Detail',
+    components:{
+        DetailBanner
+    }
 }
 </script>
 

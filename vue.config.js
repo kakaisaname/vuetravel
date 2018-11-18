@@ -15,6 +15,7 @@ module.exports = {
     resolve: {
       alias: {
         style: "@/assets/style",
+        common: "@/components/common",
         // components: "@/components",
         // views: "@/views"
       }
