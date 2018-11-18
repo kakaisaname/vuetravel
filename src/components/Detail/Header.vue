@@ -70,6 +70,7 @@ export default {
             color #fff
             font-size .4rem    //调节返回按钮的大小
         .header-fixed
+            z-index 2      //为了景点详情往下拖动盖住下面的内容
             position fixed
             top 0
             left 0

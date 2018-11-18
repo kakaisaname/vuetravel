@@ -24,7 +24,17 @@ export default {
     data() {
         return {
             list: [{
-                title:'成人票'
+                title:'成人票',
+                children:[{
+                    title:'成人三馆联票',
+                    children:[{
+                        title:'妇女儿童'
+                    }]
+                },{
+                    title:'成人五馆联票'
+                },{
+                    title:'成人七馆联票'
+                }]
             },{
                 title:'学生票'
             },{
