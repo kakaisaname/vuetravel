@@ -4,7 +4,7 @@
       <router-link to="/">caoyi</router-link> |
       <router-link to="/about">About</router-link>
     </div> -->
-    <keep-alive>
+    <keep-alive exclude="Detail"> <!--Detail组件不做缓存-->
       <router-view />
     </keep-alive>
   </div>

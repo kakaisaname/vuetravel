@@ -35,5 +35,8 @@ export default new Router({
       component: () =>
         import(/* webpackChunkName: "about" */ "./components/Detail/Detail.vue")
     }
-  ]
+  ],
+  scrollBehavior(to, from, savedPosition) {  //页面切换时始终回到最顶部
+    return {x:0,y:0}
+  }
 });
